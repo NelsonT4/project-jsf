@@ -2,12 +2,38 @@
 <!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
 "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
 <html xmlns="http://www.w3.org/1999/xhtml"
-      xmlns:f="http://java.sun.com/jsf/core"      
-      xmlns:h="http://java.sun.com/jsf/html">
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
 <h:head>
 	<title>Pantalla principal</title>
+	<h:outputStylesheet library="css" name="styles.css"></h:outputStylesheet>
 </h:head>
 <h:body>
 	Bienvenido a la pantalla principal
+	
+	<h:dataTable id="tblempleados" var="empleado" value="#{principalController.empleados}" headerClass="headerTable" rowClasses="rowTable rowTableLine">
+		<h:column>
+			<f:facet name="header">Nombre</f:facet>
+			<h:outputLabel value="#{empleado.nombre}"></h:outputLabel>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Primer Apellido</f:facet>
+			<h:outputLabel value="#{empleado.primerApellido}"></h:outputLabel>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Segundo Apellido</f:facet>
+			<h:outputLabel value="#{empleado.segundoApellido}"></h:outputLabel>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Puesto</f:facet>
+			<h:outputLabel value="#{empleado.puesto}"></h:outputLabel>
+		</h:column>
+		<h:column>
+			<f:facet name="header">Estatus</f:facet>
+			<!-- Los boleanos se tratan de diferentes forma se deben renderisa y segun el valor se asigna un valor -->
+			<h:outputLabel value="HABILITADO" rendered="#{empleado.estatus}"></h:outputLabel>
+			<h:outputLabel value="#INHABILITADO" rendered="#{!empleado.estatus}"></h:outputLabel>
+		</h:column>
+	</h:dataTable>
 </h:body>
 </html>
